@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Counter from "./components/Counter";
+import PlayButton from "./components/PlayButton";
+import Resume from "./components/Resume";
+import data from './data.js/data.js'
+import AddResme from "./components/AddResme";
+
+
 
 function App() {
+  const [Data,setData]=useState(data)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     
+      
+    <AddResme setData={setData}/>
+     <h1 className='text-6xl font-bold'>Resume</h1>
+
+        {
+          data.map(dataa=>
+            <Resume key={dataa.id} name={dataa.name} game={dataa.game} expe={dataa.expe} extra={dataa.extra} />,
+            // <PlayButton  message="play-btn" onPlay={()=>console.log("play")} onPause={()=>console.log("pause")} >Play</PlayButton>
+            )
+        }
+        {/* <PlayButton  message="pause-btn" onSmash={()=>alert("Message")}>pause</PlayButton> */}
+    
+        {/* <Counter/> */}
+    
+    </>
+    
   );
 }
 
